@@ -1,0 +1,4 @@
+name: ArrowCrafting
+version: '0.1-SNAPSHOT'
+main: ch.timeo.arrowCrafting.ArrowCrafting
+api-version: '1.21'
