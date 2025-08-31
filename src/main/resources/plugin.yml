@@ -2,3 +2,4 @@ name: ArrowUpgrade
 version: '0.3-SNAPSHOT'
 main: ch.timeo.arrowUpgrade.ArrowUpgrade
 api-version: '1.21'
+description: Upgrade your arrows with special effects using fletching table!
