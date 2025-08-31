@@ -15,17 +15,19 @@ Each parts can be made of various materials to provide many effects.
 ### Fletching
 - Feather:
    - Default materials, do nothing
+- Ender Pearl:
+   - Teleport hit entity to shooter
 ### Shaft
-- Stick
+- Stick:
    - Default material, do nothing
-- Blaze Rod
+- Blaze Rod:
    - Ignite the arrow and make the hit entity burn until extinguished
 ### Point
-- Flint
+- Flint:
    - Default material, do nothing
-- Ender Pearl
+- Ender Pearl:
    - Teleport the player to the hit block or entity
-- Slime Ball
+- Slime Ball:
    - Arrow bounce on surfaces 3 times before stopping
 ## To-Do List
 - [ ] Add Breeze Rod (shaft), Phantom Membrane (fletching), Amethyst Shard (Point)
