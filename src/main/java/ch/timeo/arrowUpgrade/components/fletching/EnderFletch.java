@@ -3,18 +3,19 @@ package ch.timeo.arrowUpgrade.components.fletching;
 import ch.timeo.arrowUpgrade.ArrowUpgrade;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.entity.AbstractArrow;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.ProjectileHitEvent;
 
 public class EnderFletch implements Fletching{
     @Override
-    public void apply(Arrow arrow) {
+    public void apply(AbstractArrow arrow) {
 
     }
 
     @Override
-    public void onArrowHit(Arrow arrow, ProjectileHitEvent event) {
+    public void onArrowHit(AbstractArrow arrow, ProjectileHitEvent event) {
         Location playerLoc = arrow.getShooter() instanceof Player player ? player.getLocation() : null;
         if (playerLoc == null) return;
         if (event.getHitEntity() != null) {

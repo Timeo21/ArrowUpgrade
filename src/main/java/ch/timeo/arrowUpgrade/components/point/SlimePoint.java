@@ -5,6 +5,7 @@ import ch.timeo.arrowUpgrade.Utils;
 import ch.timeo.arrowUpgrade.listeners.ArrowListener;
 import org.bukkit.*;
 import org.bukkit.block.BlockFace;
+import org.bukkit.entity.AbstractArrow;
 import org.bukkit.entity.Arrow;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.metadata.FixedMetadataValue;
@@ -14,14 +15,14 @@ import org.bukkit.util.Vector;
 public class SlimePoint implements Point {
     private static final int MAX_BOUNCES = 3;
     @Override
-    public void apply(Arrow arrow) {
+    public void apply(AbstractArrow arrow) {
         if (!arrow.hasMetadata("bounce_left")) {
             arrow.setMetadata("bounce_left", new FixedMetadataValue(ArrowUpgrade.getInstance(), MAX_BOUNCES));
         }
     }
 
     @Override
-    public void onArrowHit(Arrow arrow, ProjectileHitEvent event) {
+    public void onArrowHit(AbstractArrow arrow, ProjectileHitEvent event) {
         arrow.getWorld().spawnParticle(Particle.BLOCK, arrow.getLocation(), 10, 0.2, 0.2, 0.2, 1, Material.SLIME_BLOCK.createBlockData());
         handleBounce(arrow, event);
     }
@@ -31,7 +32,7 @@ public class SlimePoint implements Point {
         return "slime";
     }
 
-    private void handleBounce(Arrow arrow, ProjectileHitEvent event) {
+    private void handleBounce(AbstractArrow arrow, ProjectileHitEvent event) {
         int bounces;
         if (event.getHitBlock() == null) return;
         if (arrow.hasMetadata("bounce_left") && !arrow.getMetadata("bounce_left").isEmpty()) {
@@ -53,7 +54,7 @@ public class SlimePoint implements Point {
         Location newLoc = arrow.getLocation().add(offset.normalize().multiply(0.5));
         newLoc.setYaw(getYaw(reflected));
         newLoc.setPitch(getPitch(reflected));
-        Arrow newarrow = shootArrow(newLoc, reflected, (float) speed, arrow.getShooter());
+        AbstractArrow newarrow = shootArrow(newLoc, reflected, (float) speed, arrow.getShooter(), arrow.getClass());
         if (bounces > 0) {
             newarrow.setMetadata("bounce_left", new FixedMetadataValue(ArrowUpgrade.getInstance(), bounces));
         }
@@ -68,8 +69,8 @@ public class SlimePoint implements Point {
 
     }
 
-    private Arrow shootArrow(Location loc, Vector direction, float speed, ProjectileSource source) {
-        Arrow arrow = loc.getWorld().spawnArrow(loc, direction, speed, 0);
+    private <T extends AbstractArrow> T shootArrow(Location loc, Vector direction, float speed, ProjectileSource source, Class<T> arrowType) {
+        T arrow = loc.getWorld().spawnArrow(loc, direction, speed, 0, arrowType);
         arrow.setShooter(source);
         return arrow;
     }

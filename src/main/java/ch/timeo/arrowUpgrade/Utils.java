@@ -2,6 +2,7 @@ package ch.timeo.arrowUpgrade;
 
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
+import org.bukkit.entity.AbstractArrow;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.inventory.ItemStack;
@@ -15,7 +16,7 @@ public class Utils {
     public static final String FIRE_SHAFT_ID = "blaze_rod";
     public static final String ENDER_POINT_ID = "ender_point";
     public static final String ENDER_FLETCHING_ID = "ender_fletching";
-    public static boolean transferComponent(ItemStack source, Arrow target) {
+    public static boolean transferComponent(ItemStack source, AbstractArrow target) {
         if (source == null || target == null) return false;
         if (source.getType() != Material.ARROW && source.getType() != Material.SPECTRAL_ARROW && source.getType() != Material.TIPPED_ARROW) return false;
         if (!source.hasItemMeta()) return false;
@@ -66,7 +67,7 @@ public class Utils {
         public final String pointId;
         public final String effectId;
 
-        public CraftedArrow(Arrow arrow) {
+        public CraftedArrow(AbstractArrow arrow) {
             item = arrow.getItemStack();
             fletchingId = arrow.getPersistentDataContainer().get(
                     new NamespacedKey(ArrowUpgrade.getInstance(), "fletching"),

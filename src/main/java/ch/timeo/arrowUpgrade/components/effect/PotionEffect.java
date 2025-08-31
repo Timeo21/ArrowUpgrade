@@ -1,11 +1,9 @@
-package ch.timeo.arrowUpgrade.components.shaft;
+package ch.timeo.arrowUpgrade.components.effect;
 
-import ch.timeo.arrowUpgrade.Utils;
 import org.bukkit.entity.AbstractArrow;
-import org.bukkit.entity.Arrow;
 import org.bukkit.event.entity.ProjectileHitEvent;
 
-public class DefaultShaft implements Shaft{
+public class PotionEffect implements Effect{
     @Override
     public void apply(AbstractArrow arrow) {
     }
@@ -16,6 +14,6 @@ public class DefaultShaft implements Shaft{
 
     @Override
     public String getId() {
-        return Utils.DEFAULT_ID;
+        return "potion_effect";
     }
 }

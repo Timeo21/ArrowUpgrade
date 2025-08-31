@@ -3,6 +3,7 @@ package ch.timeo.arrowUpgrade.registry;
 import ch.timeo.arrowUpgrade.components.Component;
 import ch.timeo.arrowUpgrade.components.effect.DefaultEffect;
 import ch.timeo.arrowUpgrade.components.effect.Effect;
+import ch.timeo.arrowUpgrade.components.effect.PotionEffect;
 import ch.timeo.arrowUpgrade.components.fletching.DefaultFletching;
 import ch.timeo.arrowUpgrade.components.fletching.EnderFletch;
 import ch.timeo.arrowUpgrade.components.fletching.Fletching;
@@ -27,9 +28,6 @@ public class ArrowRegistry {
     private static final Map<String, Fletching> ID_TO_FLETCHING = new HashMap<>();
     private static final Map<Material, String> MAT_TO__FLETCHING_ID = new HashMap<>();
 
-    private static void registerFletching(){
-        registerComponent(new DefaultFletching(), Material.FEATHER, ID_TO_FLETCHING, MAT_TO__FLETCHING_ID);
-    }
 
     public static boolean isValidFletching(Material material){
         return MAT_TO__FLETCHING_ID.containsKey(material);
@@ -53,11 +51,6 @@ public class ArrowRegistry {
     private static final Map<String, Shaft> ID_TO_SHAFT = new HashMap<>();
     private static final Map<Material, String> MAT_TO_SHAFT_ID = new HashMap<>();
 
-    private static void registerShaft(){
-        registerComponent(new DefaultShaft(), Material.STICK,ID_TO_SHAFT,MAT_TO_SHAFT_ID);
-        registerComponent(new FireShaft(), Material.BLAZE_ROD, ID_TO_SHAFT, MAT_TO_SHAFT_ID);
-    }
-
     public static boolean isValidShaft(Material material){
         return MAT_TO_SHAFT_ID.containsKey(material);
     }
@@ -79,12 +72,6 @@ public class ArrowRegistry {
     private static final Map<String, Point> ID_TO_POINT = new HashMap<>();
     private static final Map<Material, String> MAT_TO_POINT_ID = new HashMap<>();
 
-    private static void registerPoint(){
-        registerComponent(new DefaultPoint(), Material.FLINT, ID_TO_POINT, MAT_TO_POINT_ID);
-        registerComponent(new EnderPoint(), Material.ENDER_PEARL, ID_TO_POINT, MAT_TO_POINT_ID);
-        registerComponent(new SlimePoint(), Material.SLIME_BALL, ID_TO_POINT, MAT_TO_POINT_ID);
-        registerComponent(new EnderFletch(), Material.ENDER_PEARL, ID_TO_FLETCHING, MAT_TO__FLETCHING_ID);
-    }
 
     public static boolean isValidPoint(Material material){
         return MAT_TO_POINT_ID.containsKey(material);
@@ -107,10 +94,6 @@ public class ArrowRegistry {
     private static final Map<String, Effect> ID_TO_EFFECT = new HashMap<>();
     private static final Map<Material, String> MAT_TO_EFFECT_ID = new HashMap<>();
 
-    private static void registerEffect(){
-        registerComponent(new DefaultEffect(), Material.AIR, ID_TO_EFFECT, MAT_TO_EFFECT_ID);
-    }
-
     public static boolean isValidEffect(Material material){
         return MAT_TO_EFFECT_ID.containsKey(material);
     }
@@ -129,10 +112,19 @@ public class ArrowRegistry {
     // endregion
 
     public static void registerAll() {
-        registerShaft();
-        registerFletching();
-        registerPoint();
-        registerEffect();
+        // Fletching
+        registerComponent(new DefaultFletching(), Material.FEATHER, ID_TO_FLETCHING, MAT_TO__FLETCHING_ID);
+        registerComponent(new EnderFletch(), Material.ENDER_PEARL, ID_TO_FLETCHING, MAT_TO__FLETCHING_ID);
+        // Shaft
+        registerComponent(new DefaultShaft(), Material.STICK,ID_TO_SHAFT,MAT_TO_SHAFT_ID);
+        registerComponent(new FireShaft(), Material.BLAZE_ROD, ID_TO_SHAFT, MAT_TO_SHAFT_ID);
+        // Point
+        registerComponent(new DefaultPoint(), Material.FLINT, ID_TO_POINT, MAT_TO_POINT_ID);
+        registerComponent(new EnderPoint(), Material.ENDER_PEARL, ID_TO_POINT, MAT_TO_POINT_ID);
+        registerComponent(new SlimePoint(), Material.SLIME_BALL, ID_TO_POINT, MAT_TO_POINT_ID);
+        // Effect
+        registerComponent(new DefaultEffect(), Material.AIR, ID_TO_EFFECT, MAT_TO_EFFECT_ID);
+        registerComponent(new PotionEffect(), Material.LINGERING_POTION, ID_TO_EFFECT, MAT_TO_EFFECT_ID);
     }
 
     private static <T extends Component> void registerComponent(T component, Material material, Map<String,T> idToComp, Map<Material,String> matToString) {

@@ -117,7 +117,7 @@ public class FletchingListener implements Listener {
                 fletching.getType(),
                 shaft.getType(),
                 point.getType(),
-                effect != null ? effect.getType() : null
+                effect
         );
 
         // Mark it as "Preview Only"
@@ -146,7 +146,7 @@ public class FletchingListener implements Listener {
                 fletching.getType(),
                 shaft.getType(),
                 point.getType(),
-                effect != null ? effect.getType() : null
+                effect
         );
 
         if (result.getType() == Material.BARRIER) {

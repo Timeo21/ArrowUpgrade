@@ -6,6 +6,7 @@ import ch.timeo.arrowUpgrade.components.fletching.Fletching;
 import ch.timeo.arrowUpgrade.components.point.Point;
 import ch.timeo.arrowUpgrade.components.shaft.Shaft;
 import ch.timeo.arrowUpgrade.registry.ArrowRegistry;
+import org.bukkit.entity.AbstractArrow;
 import org.bukkit.entity.Arrow;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -22,61 +23,61 @@ public class ArrowListener implements Listener {
     }
 
     // region Apply/Hit
-    public static void fletchingHit(Arrow arrow, String fletchingId, ProjectileHitEvent event) {
+    public static void fletchingHit(AbstractArrow arrow, String fletchingId, ProjectileHitEvent event) {
         Fletching fletching = ArrowRegistry.getFletching(fletchingId);
         if (fletching != null) fletching.onArrowHit(arrow, event);
     }
 
-    public static void fletchingApply(Arrow arrow, String fletchingId) {
+    public static void fletchingApply(AbstractArrow arrow, String fletchingId) {
         Fletching fletching = ArrowRegistry.getFletching(fletchingId);
         if (fletching != null) fletching.apply(arrow);
     }
-    public static void fletchingApply(Arrow arrow){
+    public static void fletchingApply(AbstractArrow arrow){
         if (arrow == null) return;
         Utils.CraftedArrow craftedArrow = new Utils.CraftedArrow(arrow);
         if (craftedArrow.fletchingId != null) fletchingApply(arrow, craftedArrow.fletchingId);
     }
 
-    public static void shaftHit(Arrow arrow, String shaftId, ProjectileHitEvent event) {
+    public static void shaftHit(AbstractArrow arrow, String shaftId, ProjectileHitEvent event) {
         Shaft shaft = ArrowRegistry.getShaft(shaftId);
         if (shaft != null) shaft.onArrowHit(arrow, event);
     }
 
-    public static void shaftApply(Arrow arrow, String shaftId) {
+    public static void shaftApply(AbstractArrow arrow, String shaftId) {
         Shaft shaft = ArrowRegistry.getShaft(shaftId);
         if (shaft != null) shaft.apply(arrow);
     }
-    public static void shaftApply(Arrow arrow){
+    public static void shaftApply(AbstractArrow arrow){
         if (arrow == null) return;
         Utils.CraftedArrow craftedArrow = new Utils.CraftedArrow(arrow);
         if (craftedArrow.shaftId != null) shaftApply(arrow, craftedArrow.shaftId);
     }
 
-    public static void pointHit(Arrow arrow, String pointId, ProjectileHitEvent event) {
+    public static void pointHit(AbstractArrow arrow, String pointId, ProjectileHitEvent event) {
         Point point = ArrowRegistry.getPoint(pointId);
         if (point != null) point.onArrowHit(arrow, event);
     }
 
-    public static void pointApply(Arrow arrow, String pointId) {
+    public static void pointApply(AbstractArrow arrow, String pointId) {
         Point point = ArrowRegistry.getPoint(pointId);
         if (point != null) point.apply(arrow);
     }
-    public static void pointApply(Arrow arrow){
+    public static void pointApply(AbstractArrow arrow){
         if (arrow == null) return;
         Utils.CraftedArrow craftedArrow = new Utils.CraftedArrow(arrow);
         if (craftedArrow.pointId != null) pointApply(arrow, craftedArrow.pointId);
     }
 
-    public static void effectHit(Arrow arrow, String effectId, ProjectileHitEvent event) {
+    public static void effectHit(AbstractArrow arrow, String effectId, ProjectileHitEvent event) {
         Effect effect = ArrowRegistry.getEffect(effectId);
         if (effect != null) effect.onArrowHit(arrow, event);
     }
 
-    public static void effectApply(Arrow arrow, String effectId) {
+    public static void effectApply(AbstractArrow arrow, String effectId) {
         Effect effect = ArrowRegistry.getEffect(effectId);
         if (effect != null) effect.apply(arrow);
     }
-    public static void effectApply(Arrow arrow){
+    public static void effectApply(AbstractArrow arrow){
         if (arrow == null) return;
         Utils.CraftedArrow craftedArrow = new Utils.CraftedArrow(arrow);
         if (craftedArrow.effectId != null) effectApply(arrow, craftedArrow.effectId);
@@ -106,7 +107,7 @@ public class ArrowListener implements Listener {
         applyComponents(arrow);
     }
 
-    public void applyComponents(Arrow arrow){
+    public void applyComponents(AbstractArrow arrow){
         if (arrow == null) return;
         Utils.CraftedArrow craftedArrow = new Utils.CraftedArrow(arrow);
         if (craftedArrow.fletchingId != null) fletchingApply(arrow, craftedArrow.fletchingId);
@@ -115,7 +116,7 @@ public class ArrowListener implements Listener {
         if (craftedArrow.effectId != null) effectApply(arrow, craftedArrow.effectId);
     }
 
-    public void hitComponents(Arrow arrow, ProjectileHitEvent event){
+    public void hitComponents(AbstractArrow arrow, ProjectileHitEvent event){
         if (arrow == null) return;
         Utils.CraftedArrow craftedArrow = new Utils.CraftedArrow(arrow);
         if (craftedArrow.fletchingId != null) fletchingHit(arrow, craftedArrow.fletchingId, event);
