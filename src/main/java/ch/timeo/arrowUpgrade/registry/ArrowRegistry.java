@@ -4,6 +4,7 @@ import ch.timeo.arrowUpgrade.components.Component;
 import ch.timeo.arrowUpgrade.components.effect.DefaultEffect;
 import ch.timeo.arrowUpgrade.components.effect.Effect;
 import ch.timeo.arrowUpgrade.components.fletching.DefaultFletching;
+import ch.timeo.arrowUpgrade.components.fletching.EnderFletch;
 import ch.timeo.arrowUpgrade.components.fletching.Fletching;
 import ch.timeo.arrowUpgrade.components.point.DefaultPoint;
 import ch.timeo.arrowUpgrade.components.point.EnderPoint;
@@ -82,6 +83,7 @@ public class ArrowRegistry {
         registerComponent(new DefaultPoint(), Material.FLINT, ID_TO_POINT, MAT_TO_POINT_ID);
         registerComponent(new EnderPoint(), Material.ENDER_PEARL, ID_TO_POINT, MAT_TO_POINT_ID);
         registerComponent(new SlimePoint(), Material.SLIME_BALL, ID_TO_POINT, MAT_TO_POINT_ID);
+        registerComponent(new EnderFletch(), Material.ENDER_PEARL, ID_TO_FLETCHING, MAT_TO__FLETCHING_ID);
     }
 
     public static boolean isValidPoint(Material material){

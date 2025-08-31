@@ -4,7 +4,6 @@ import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.HumanEntity;
-import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
 
@@ -14,6 +13,8 @@ import java.util.List;
 public class Utils {
     public static final String DEFAULT_ID = "default";
     public static final String FIRE_SHAFT_ID = "blaze_rod";
+    public static final String ENDER_POINT_ID = "ender_point";
+    public static final String ENDER_FLETCHING_ID = "ender_fletching";
     public static boolean transferComponent(ItemStack source, Arrow target) {
         if (source == null || target == null) return false;
         if (source.getType() != Material.ARROW && source.getType() != Material.SPECTRAL_ARROW && source.getType() != Material.TIPPED_ARROW) return false;
