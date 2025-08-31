@@ -1,6 +1,8 @@
 package ch.timeo.arrowUpgrade.components.point;
 
+import ch.timeo.arrowUpgrade.ArrowUpgrade;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.ProjectileHitEvent;
@@ -14,11 +16,15 @@ public class EnderPoint implements Point {
 
     @Override
     public void onArrowHit(Arrow arrow, ProjectileHitEvent event) {
-            UUID uuid = arrow.getOwnerUniqueId();
+        UUID uuid = arrow.getOwnerUniqueId();
         if (uuid == null) return;
         Player player = Bukkit.getPlayer(uuid);
+        Location goTo = event.getHitEntity() != null ? event.getHitEntity().getLocation() : arrow.getLocation();
         if (player == null) return;
-        player.teleport(arrow.getLocation());
+        Bukkit.getScheduler().runTaskLater(ArrowUpgrade.getInstance(), () -> {
+            player.teleport(goTo);
+        }, 1L);
+
     }
 
     @Override
