@@ -62,6 +62,7 @@ public class SlimePoint implements Point {
         Utils.transferComponent(arrow.getItemStack(), newarrow);
         ArrowListener.fletchingApply(newarrow);
         ArrowListener.shaftApply(newarrow);
+        newarrow.setVelocity(reflected.multiply(speed));
         arrow.getWorld().playSound(arrow.getLocation(), "entity.slime.jump", 1.0f, 1.0f);
         arrow.remove();
 
