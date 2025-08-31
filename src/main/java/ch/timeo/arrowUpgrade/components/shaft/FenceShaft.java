@@ -1,9 +1,9 @@
-package ch.timeo.arrowCrafting.components.fletching;
+package ch.timeo.arrowUpgrade.components.shaft;
 
 import org.bukkit.entity.Arrow;
 import org.bukkit.event.entity.ProjectileHitEvent;
 
-public class DefaultFletching implements Fletching {
+public class FenceShaft implements Shaft {
     @Override
     public void apply(Arrow arrow) {
 
@@ -16,6 +16,6 @@ public class DefaultFletching implements Fletching {
 
     @Override
     public String getId() {
-        return "";
+        return "fence";
     }
 }

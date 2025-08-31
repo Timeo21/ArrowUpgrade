@@ -1,20 +1,19 @@
-package ch.timeo.arrowCrafting.listeners;
+package ch.timeo.arrowUpgrade.listeners;
 
-import ch.timeo.arrowCrafting.ArrowCrafting;
-import ch.timeo.arrowCrafting.factory.ArrowFactory;
-import ch.timeo.arrowCrafting.gui.FletchingGUI;
-import ch.timeo.arrowCrafting.registry.ArrowRegistry;
-import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.TextComponent;
-import net.kyori.adventure.text.format.NamedTextColor;
-import net.kyori.adventure.text.format.TextDecoration;
+import ch.timeo.arrowUpgrade.ArrowUpgrade;
+import ch.timeo.arrowUpgrade.Utils;
+import ch.timeo.arrowUpgrade.factory.ArrowFactory;
+import ch.timeo.arrowUpgrade.gui.FletchingGUI;
+import ch.timeo.arrowUpgrade.registry.ArrowRegistry;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -24,8 +23,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FletchingListener implements Listener {
+
+    @EventHandler
+    public void onCloseFletching(InventoryCloseEvent event) {
+        if (!event.getView().getTitle().equals(FletchingGUI.GUI_NAME)) return;
+        Inventory inv = event.getInventory();
+
+        // Drop all items in crafting slots
+        ItemStack fletching = inv.getItem(FletchingGUI.SLOT_FLETCHING);
+        ItemStack shaft = inv.getItem(FletchingGUI.SLOT_SHAFT);
+        ItemStack point = inv.getItem(FletchingGUI.SLOT_POINT);
+        ItemStack effect = inv.getItem(FletchingGUI.SLOT_EFFECT);
+
+        HumanEntity player = event.getPlayer();
+        List<ItemStack> toDrop = new ArrayList<>();
+        if (fletching != null) toDrop.add(fletching);
+        if (shaft != null) toDrop.add(shaft);
+        if (point != null) toDrop.add(point);
+        if (effect != null) toDrop.add(effect);
+        Utils.givePlayerAll(player, toDrop);
+    }
+
     @EventHandler
     public void onOpenFletching(PlayerInteractEvent event) {
+        if (event.getAction()!= Action.RIGHT_CLICK_BLOCK) return;
         if (event.getClickedBlock() == null) return;
         if (event.getClickedBlock().getType() != Material.FLETCHING_TABLE) return;
 
@@ -51,7 +72,7 @@ public class FletchingListener implements Listener {
         }
 
         // Delay update by 1 tick (because item isn't placed yet in inventory)
-        Bukkit.getScheduler().runTaskLater(ArrowCrafting.getInstance(), () -> {
+        Bukkit.getScheduler().runTaskLater(ArrowUpgrade.getInstance(), () -> {
             updateResultPreview(inv);
         }, 1L);
 

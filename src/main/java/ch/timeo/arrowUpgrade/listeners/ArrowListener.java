@@ -1,11 +1,11 @@
-package ch.timeo.arrowCrafting.listeners;
+package ch.timeo.arrowUpgrade.listeners;
 
-import ch.timeo.arrowCrafting.Utils;
-import ch.timeo.arrowCrafting.components.effect.Effect;
-import ch.timeo.arrowCrafting.components.fletching.Fletching;
-import ch.timeo.arrowCrafting.components.point.Point;
-import ch.timeo.arrowCrafting.components.shaft.Shaft;
-import ch.timeo.arrowCrafting.registry.ArrowRegistry;
+import ch.timeo.arrowUpgrade.Utils;
+import ch.timeo.arrowUpgrade.components.effect.Effect;
+import ch.timeo.arrowUpgrade.components.fletching.Fletching;
+import ch.timeo.arrowUpgrade.components.point.Point;
+import ch.timeo.arrowUpgrade.components.shaft.Shaft;
+import ch.timeo.arrowUpgrade.registry.ArrowRegistry;
 import org.bukkit.entity.Arrow;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

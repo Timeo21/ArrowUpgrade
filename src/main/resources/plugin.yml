@@ -1,4 +1,4 @@
-name: ArrowCrafting
-version: '0.1-SNAPSHOT'
-main: ch.timeo.arrowCrafting.ArrowCrafting
+name: ArrowUpgrade
+version: '0.3-SNAPSHOT'
+main: ch.timeo.arrowUpgrade.ArrowUpgrade
 api-version: '1.21'

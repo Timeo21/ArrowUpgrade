@@ -1,4 +1,4 @@
-package ch.timeo.arrowCrafting.components.point;
+package ch.timeo.arrowUpgrade.components.point;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Arrow;

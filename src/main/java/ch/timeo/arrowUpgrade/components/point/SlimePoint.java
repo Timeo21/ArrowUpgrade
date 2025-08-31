@@ -1,8 +1,8 @@
-package ch.timeo.arrowCrafting.components.point;
+package ch.timeo.arrowUpgrade.components.point;
 
-import ch.timeo.arrowCrafting.ArrowCrafting;
-import ch.timeo.arrowCrafting.Utils;
-import ch.timeo.arrowCrafting.listeners.ArrowListener;
+import ch.timeo.arrowUpgrade.ArrowUpgrade;
+import ch.timeo.arrowUpgrade.Utils;
+import ch.timeo.arrowUpgrade.listeners.ArrowListener;
 import org.bukkit.*;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Arrow;
@@ -16,7 +16,7 @@ public class SlimePoint implements Point {
     @Override
     public void apply(Arrow arrow) {
         if (!arrow.hasMetadata("bounce_left")) {
-            arrow.setMetadata("bounce_left", new FixedMetadataValue(ArrowCrafting.getInstance(), MAX_BOUNCES));
+            arrow.setMetadata("bounce_left", new FixedMetadataValue(ArrowUpgrade.getInstance(), MAX_BOUNCES));
         }
     }
 
@@ -36,9 +36,9 @@ public class SlimePoint implements Point {
         if (event.getHitBlock() == null) return;
         if (arrow.hasMetadata("bounce_left") && !arrow.getMetadata("bounce_left").isEmpty()) {
             bounces = arrow.getMetadata("bounce_left").getFirst().asInt() - 1;
-            arrow.setMetadata("bounce_left", new FixedMetadataValue(ArrowCrafting.getInstance(), bounces));
+            arrow.setMetadata("bounce_left", new FixedMetadataValue(ArrowUpgrade.getInstance(), bounces));
             if (bounces <= 0) {
-                arrow.removeMetadata("bounce_left", ArrowCrafting.getInstance());
+                arrow.removeMetadata("bounce_left", ArrowUpgrade.getInstance());
             }
         } else return;
 
@@ -55,7 +55,7 @@ public class SlimePoint implements Point {
         newLoc.setPitch(getPitch(reflected));
         Arrow newarrow = shootArrow(newLoc, reflected, (float) speed, arrow.getShooter());
         if (bounces > 0) {
-            newarrow.setMetadata("bounce_left", new FixedMetadataValue(ArrowCrafting.getInstance(), bounces));
+            newarrow.setMetadata("bounce_left", new FixedMetadataValue(ArrowUpgrade.getInstance(), bounces));
         }
         newarrow.setItemStack(arrow.getItemStack());
         newarrow.setPickupStatus(arrow.getPickupStatus());

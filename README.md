@@ -28,7 +28,5 @@ Each parts can be made of various materials to provide many effects.
 - Slime Ball
    - Arrow bounce on surfaces 3 times before stopping
 ## To-Do List
-- [ ] Get crafting material back when closing inventory
-- [ ] Open inventory only with right-click
 - [ ] Add ender pearl as fletching to teleport hit entity to player
 - [ ] Add Breeze Rod (shaft), Phantom Membrane (fletching), Amethyst Shard (Point)

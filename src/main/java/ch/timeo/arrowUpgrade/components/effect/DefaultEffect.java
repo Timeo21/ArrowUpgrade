@@ -1,4 +1,4 @@
-package ch.timeo.arrowCrafting.components.effect;
+package ch.timeo.arrowUpgrade.components.effect;
 
 import org.bukkit.entity.Arrow;
 import org.bukkit.event.entity.ProjectileHitEvent;

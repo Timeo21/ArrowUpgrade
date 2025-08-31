@@ -1,10 +1,15 @@
-package ch.timeo.arrowCrafting;
+package ch.timeo.arrowUpgrade;
 
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Arrow;
+import org.bukkit.entity.HumanEntity;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
+
+import java.util.HashMap;
+import java.util.List;
 
 public class Utils {
     public static final String DEFAULT_ID = "default";
@@ -15,39 +20,39 @@ public class Utils {
         if (!source.hasItemMeta()) return false;
         // Extract component IDs from source arrow
         String fletchingId = source.getItemMeta().getPersistentDataContainer().get(
-                new NamespacedKey(ArrowCrafting.getInstance(), "fletching"),
+                new NamespacedKey(ArrowUpgrade.getInstance(), "fletching"),
                 PersistentDataType.STRING
         );
         String shaftId = source.getItemMeta().getPersistentDataContainer().get(
-                new NamespacedKey(ArrowCrafting.getInstance(), "shaft"),
+                new NamespacedKey(ArrowUpgrade.getInstance(), "shaft"),
                 PersistentDataType.STRING
         );
         String pointId = source.getItemMeta().getPersistentDataContainer().get(
-                new NamespacedKey(ArrowCrafting.getInstance(), "point"),
+                new NamespacedKey(ArrowUpgrade.getInstance(), "point"),
                 PersistentDataType.STRING
         );
         String effectId = source.getItemMeta().getPersistentDataContainer().get(
-                new NamespacedKey(ArrowCrafting.getInstance(), "effect"),
+                new NamespacedKey(ArrowUpgrade.getInstance(), "effect"),
                 PersistentDataType.STRING
         );
         // Apply components to arrow
         target.getPersistentDataContainer().set(
-                new NamespacedKey(ArrowCrafting.getInstance(), "fletching"),
+                new NamespacedKey(ArrowUpgrade.getInstance(), "fletching"),
                 PersistentDataType.STRING,
                 fletchingId != null ? fletchingId : Utils.DEFAULT_ID
         );
         target.getPersistentDataContainer().set(
-                new NamespacedKey(ArrowCrafting.getInstance(), "shaft"),
+                new NamespacedKey(ArrowUpgrade.getInstance(), "shaft"),
                 PersistentDataType.STRING,
                 shaftId != null ? shaftId : Utils.DEFAULT_ID
         );
         target.getPersistentDataContainer().set(
-                new NamespacedKey(ArrowCrafting.getInstance(), "point"),
+                new NamespacedKey(ArrowUpgrade.getInstance(), "point"),
                 PersistentDataType.STRING,
                 pointId != null ? pointId : Utils.DEFAULT_ID
         );
         target.getPersistentDataContainer().set(
-                new NamespacedKey(ArrowCrafting.getInstance(), "effect"),
+                new NamespacedKey(ArrowUpgrade.getInstance(), "effect"),
                 PersistentDataType.STRING,
                 effectId != null ? effectId : Utils.DEFAULT_ID
         );
@@ -63,19 +68,19 @@ public class Utils {
         public CraftedArrow(Arrow arrow) {
             item = arrow.getItemStack();
             fletchingId = arrow.getPersistentDataContainer().get(
-                    new NamespacedKey(ArrowCrafting.getInstance(), "fletching"),
+                    new NamespacedKey(ArrowUpgrade.getInstance(), "fletching"),
                     PersistentDataType.STRING
             );
             shaftId = arrow.getPersistentDataContainer().get(
-                    new NamespacedKey(ArrowCrafting.getInstance(), "shaft"),
+                    new NamespacedKey(ArrowUpgrade.getInstance(), "shaft"),
                     PersistentDataType.STRING
             );
             pointId = arrow.getPersistentDataContainer().get(
-                    new NamespacedKey(ArrowCrafting.getInstance(), "point"),
+                    new NamespacedKey(ArrowUpgrade.getInstance(), "point"),
                     PersistentDataType.STRING
             );
             effectId = arrow.getPersistentDataContainer().get(
-                    new NamespacedKey(ArrowCrafting.getInstance(), "effect"),
+                    new NamespacedKey(ArrowUpgrade.getInstance(), "effect"),
                     PersistentDataType.STRING
             );
         }
@@ -96,5 +101,18 @@ public class Utils {
             }
         }
         return friendlyName.toString().trim();
+    }
+
+    public static void givePlayer(HumanEntity player, ItemStack item) {
+        HashMap<Integer,ItemStack> toDrop = player.getInventory().addItem(item);
+        for (ItemStack drop : toDrop.values()) {
+            player.getWorld().dropItem(player.getLocation(), drop);
+        }
+    }
+
+    public static void givePlayerAll(HumanEntity player, List<ItemStack> items) {
+        for (ItemStack item : items) {
+            givePlayer(player, item);
+        }
     }
 }

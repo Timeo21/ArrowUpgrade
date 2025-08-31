@@ -1,17 +1,17 @@
-package ch.timeo.arrowCrafting.registry;
+package ch.timeo.arrowUpgrade.registry;
 
-import ch.timeo.arrowCrafting.components.Component;
-import ch.timeo.arrowCrafting.components.effect.DefaultEffect;
-import ch.timeo.arrowCrafting.components.effect.Effect;
-import ch.timeo.arrowCrafting.components.fletching.DefaultFletching;
-import ch.timeo.arrowCrafting.components.fletching.Fletching;
-import ch.timeo.arrowCrafting.components.point.DefaultPoint;
-import ch.timeo.arrowCrafting.components.point.EnderPoint;
-import ch.timeo.arrowCrafting.components.point.Point;
-import ch.timeo.arrowCrafting.components.point.SlimePoint;
-import ch.timeo.arrowCrafting.components.shaft.DefaultShaft;
-import ch.timeo.arrowCrafting.components.shaft.FireShaft;
-import ch.timeo.arrowCrafting.components.shaft.Shaft;
+import ch.timeo.arrowUpgrade.components.Component;
+import ch.timeo.arrowUpgrade.components.effect.DefaultEffect;
+import ch.timeo.arrowUpgrade.components.effect.Effect;
+import ch.timeo.arrowUpgrade.components.fletching.DefaultFletching;
+import ch.timeo.arrowUpgrade.components.fletching.Fletching;
+import ch.timeo.arrowUpgrade.components.point.DefaultPoint;
+import ch.timeo.arrowUpgrade.components.point.EnderPoint;
+import ch.timeo.arrowUpgrade.components.point.Point;
+import ch.timeo.arrowUpgrade.components.point.SlimePoint;
+import ch.timeo.arrowUpgrade.components.shaft.DefaultShaft;
+import ch.timeo.arrowUpgrade.components.shaft.FireShaft;
+import ch.timeo.arrowUpgrade.components.shaft.Shaft;
 import org.bukkit.Material;
 
 import java.util.HashMap;

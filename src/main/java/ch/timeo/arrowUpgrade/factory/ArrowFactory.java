@@ -1,8 +1,8 @@
-package ch.timeo.arrowCrafting.factory;
+package ch.timeo.arrowUpgrade.factory;
 
-import ch.timeo.arrowCrafting.ArrowCrafting;
-import ch.timeo.arrowCrafting.Utils;
-import ch.timeo.arrowCrafting.registry.ArrowRegistry;
+import ch.timeo.arrowUpgrade.ArrowUpgrade;
+import ch.timeo.arrowUpgrade.Utils;
+import ch.timeo.arrowUpgrade.registry.ArrowRegistry;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.format.TextDecoration;
@@ -25,20 +25,20 @@ public class ArrowFactory {
 
         // Encode metadata
         meta.getPersistentDataContainer().set(
-                new NamespacedKey(ArrowCrafting.getInstance(), "fletching"),
+                new NamespacedKey(ArrowUpgrade.getInstance(), "fletching"),
                 PersistentDataType.STRING, ArrowRegistry.getFletchingId(fletching)
         );
         meta.getPersistentDataContainer().set(
-                new NamespacedKey(ArrowCrafting.getInstance(), "shaft"),
+                new NamespacedKey(ArrowUpgrade.getInstance(), "shaft"),
                 PersistentDataType.STRING, ArrowRegistry.getShaftId(shaft)
         );
         meta.getPersistentDataContainer().set(
-                new NamespacedKey(ArrowCrafting.getInstance(), "point"),
+                new NamespacedKey(ArrowUpgrade.getInstance(), "point"),
                 PersistentDataType.STRING, ArrowRegistry.getPointId(point)
         );
         if (effect != null) {
             meta.getPersistentDataContainer().set(
-                    new NamespacedKey(ArrowCrafting.getInstance(), "effect"),
+                    new NamespacedKey(ArrowUpgrade.getInstance(), "effect"),
                     PersistentDataType.STRING, ArrowRegistry.getEffectId(effect)
             );
         }

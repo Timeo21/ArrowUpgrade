@@ -1,21 +1,20 @@
-package ch.timeo.arrowCrafting.components.point;
+package ch.timeo.arrowUpgrade.components.shaft;
 
+import ch.timeo.arrowUpgrade.Utils;
 import org.bukkit.entity.Arrow;
 import org.bukkit.event.entity.ProjectileHitEvent;
 
-public class DefaultPoint implements Point {
+public class DefaultShaft implements Shaft{
     @Override
     public void apply(Arrow arrow) {
-        return;
     }
 
     @Override
     public void onArrowHit(Arrow arrow, ProjectileHitEvent event) {
-        return;
     }
 
     @Override
     public String getId() {
-        return "default";
+        return Utils.DEFAULT_ID;
     }
 }
