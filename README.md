@@ -19,7 +19,7 @@ Each parts can be made of various materials to provide many effects.
 - Stick
    - Default material, do nothing
 - Blaze Rod
-   - Ignite the arrow and make the hit entity burn until extinguishe
+   - Ignite the arrow and make the hit entity burn until extinguished
 ### Point
 - Flint
    - Default material, do nothing
