@@ -155,7 +155,6 @@ public class FletchingListener implements Listener {
         }
         // Give to player
         player.getInventory().addItem(result);
-        player.sendMessage("§aYou crafted a custom arrow!");
 
         // Reduce crafting slot material number by 1
         inv.setItem(FletchingGUI.SLOT_FLETCHING, fletching.subtract());
