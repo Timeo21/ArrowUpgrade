@@ -42,5 +42,6 @@ Each parts can be made of various materials to provide many effects.
    - Turn the arrow into a tipped arrow that apply the potion effect on hit entity
 ## To-Do List
 - [x] Add Breeze Rod (shaft)
+- [ ] Remove debug messages
 - [ ] Phantom Membrane (fletching)
 - [ ] Amethyst Shard (Point)
