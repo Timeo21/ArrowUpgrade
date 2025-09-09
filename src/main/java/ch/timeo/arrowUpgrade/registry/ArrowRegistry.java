@@ -3,14 +3,13 @@ package ch.timeo.arrowUpgrade.registry;
 import ch.timeo.arrowUpgrade.components.Component;
 import ch.timeo.arrowUpgrade.components.effect.DefaultEffect;
 import ch.timeo.arrowUpgrade.components.effect.Effect;
+import ch.timeo.arrowUpgrade.components.effect.GlowEffect;
 import ch.timeo.arrowUpgrade.components.effect.PotionEffect;
 import ch.timeo.arrowUpgrade.components.fletching.DefaultFletching;
 import ch.timeo.arrowUpgrade.components.fletching.EnderFletch;
 import ch.timeo.arrowUpgrade.components.fletching.Fletching;
-import ch.timeo.arrowUpgrade.components.point.DefaultPoint;
-import ch.timeo.arrowUpgrade.components.point.EnderPoint;
-import ch.timeo.arrowUpgrade.components.point.Point;
-import ch.timeo.arrowUpgrade.components.point.SlimePoint;
+import ch.timeo.arrowUpgrade.components.point.*;
+import ch.timeo.arrowUpgrade.components.shaft.BreezeShaft;
 import ch.timeo.arrowUpgrade.components.shaft.DefaultShaft;
 import ch.timeo.arrowUpgrade.components.shaft.FireShaft;
 import ch.timeo.arrowUpgrade.components.shaft.Shaft;
@@ -21,28 +20,25 @@ import java.util.Map;
 
 public class ArrowRegistry {
 
-
-
-
     // region Fletching
     private static final Map<String, Fletching> ID_TO_FLETCHING = new HashMap<>();
-    private static final Map<Material, String> MAT_TO__FLETCHING_ID = new HashMap<>();
+    private static final Map<Material, String> MAT_TO_FLETCHING_ID = new HashMap<>();
 
 
     public static boolean isValidFletching(Material material){
-        return MAT_TO__FLETCHING_ID.containsKey(material);
+        return MAT_TO_FLETCHING_ID.containsKey(material);
     }
 
     public static Fletching getFletching(String id){
         return ID_TO_FLETCHING.get(id);
     }
     public static Fletching getFletching(Material material){
-        String id = MAT_TO__FLETCHING_ID.get(material);
+        String id = MAT_TO_FLETCHING_ID.get(material);
         if(id == null) return null;
         return getFletching(id);
     }
     public static String getFletchingId(Material material){
-        return MAT_TO__FLETCHING_ID.get(material);
+        return MAT_TO_FLETCHING_ID.get(material);
     }
 
     // endregion
@@ -113,18 +109,26 @@ public class ArrowRegistry {
 
     public static void registerAll() {
         // Fletching
-        registerComponent(new DefaultFletching(), Material.FEATHER, ID_TO_FLETCHING, MAT_TO__FLETCHING_ID);
-        registerComponent(new EnderFletch(), Material.ENDER_PEARL, ID_TO_FLETCHING, MAT_TO__FLETCHING_ID);
+        registerComponent(new DefaultFletching(), Material.FEATHER, ID_TO_FLETCHING, MAT_TO_FLETCHING_ID);
+        registerComponent(new EnderFletch(), Material.ENDER_PEARL, ID_TO_FLETCHING, MAT_TO_FLETCHING_ID);
+
         // Shaft
         registerComponent(new DefaultShaft(), Material.STICK,ID_TO_SHAFT,MAT_TO_SHAFT_ID);
         registerComponent(new FireShaft(), Material.BLAZE_ROD, ID_TO_SHAFT, MAT_TO_SHAFT_ID);
+        registerComponent(new BreezeShaft(), Material.BREEZE_ROD, ID_TO_SHAFT, MAT_TO_SHAFT_ID);
+
         // Point
         registerComponent(new DefaultPoint(), Material.FLINT, ID_TO_POINT, MAT_TO_POINT_ID);
         registerComponent(new EnderPoint(), Material.ENDER_PEARL, ID_TO_POINT, MAT_TO_POINT_ID);
         registerComponent(new SlimePoint(), Material.SLIME_BALL, ID_TO_POINT, MAT_TO_POINT_ID);
+        registerComponent(new ChorusPoint(), Material.CHORUS_FRUIT, ID_TO_POINT, MAT_TO_POINT_ID);
+
         // Effect
         registerComponent(new DefaultEffect(), Material.AIR, ID_TO_EFFECT, MAT_TO_EFFECT_ID);
+        registerComponent(new PotionEffect(), Material.SPLASH_POTION, ID_TO_EFFECT, MAT_TO_EFFECT_ID);
+        registerComponent(new PotionEffect(), Material.POTION, ID_TO_EFFECT, MAT_TO_EFFECT_ID);
         registerComponent(new PotionEffect(), Material.LINGERING_POTION, ID_TO_EFFECT, MAT_TO_EFFECT_ID);
+        registerComponent(new GlowEffect(), Material.GLOWSTONE_DUST, ID_TO_EFFECT, MAT_TO_EFFECT_ID);
     }
 
     private static <T extends Component> void registerComponent(T component, Material material, Map<String,T> idToComp, Map<Material,String> matToString) {

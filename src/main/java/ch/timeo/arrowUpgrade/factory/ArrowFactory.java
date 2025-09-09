@@ -25,7 +25,7 @@ public class ArrowFactory {
         Material arrowMat = Material.ARROW;
         Material effectMat = effect != null ? effect.getType() : null;
         if (effectMat == Material.GLOWSTONE_DUST) arrowMat = Material.SPECTRAL_ARROW;
-        if (effectMat == Material.SPLASH_POTION) arrowMat = Material.TIPPED_ARROW;
+        if (effectMat == Material.SPLASH_POTION || effectMat == Material.POTION ||effectMat == Material.LINGERING_POTION) arrowMat = Material.TIPPED_ARROW;
         ItemStack arrow = new ItemStack(arrowMat, 8);
         StringBuilder effectDesc = new StringBuilder();
         if (arrowMat == Material.TIPPED_ARROW) {
