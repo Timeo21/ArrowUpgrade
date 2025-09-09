@@ -123,7 +123,7 @@ public class FletchingListener implements Listener {
         // Mark it as "Preview Only"
         ItemMeta meta = preview.getItemMeta();
         List<String> lore = meta.hasLore() ? meta.getLore() : new ArrayList<>();
-        lore.add("§8Click to craft this arrow");
+        lore.add("§8Click to craft arrows");
         meta.setLore(lore);
         preview.setItemMeta(meta);
 
@@ -150,7 +150,7 @@ public class FletchingListener implements Listener {
         );
 
         if (result.getType() == Material.BARRIER) {
-            player.sendMessage("§cInvalid arrow combination!");
+            player.sendMessage("§cInvalid arrow materials!");
             return;
         }
         // Give to player
