@@ -11,6 +11,7 @@ import org.bukkit.event.entity.ProjectileHitEvent;
 import java.util.Random;
 
 public class ChorusPoint implements Point{
+    private static final double TELEPORT_RADIUS = 10.0;
     @Override
     public void apply(AbstractArrow arrow) {
     }
@@ -35,18 +36,15 @@ public class ChorusPoint implements Point{
 
         Random random = new Random();
 
-        // Maximum teleport distance (like vanilla Chorus Fruit)
-        double maxDistance = 16.0;
-
         // Current location
         Location loc = entity.getLocation();
         World world = loc.getWorld();
         if (world == null) return;
 
         for (int attempt = 0; attempt < 16; attempt++) { // try 16 times like vanilla
-            double offsetX = (random.nextDouble() - 0.5) * 2 * maxDistance;
+            double offsetX = (random.nextDouble() - 0.5) * 2 * TELEPORT_RADIUS;
             double offsetY = random.nextDouble() * 8 - 4; // can go slightly up or down
-            double offsetZ = (random.nextDouble() - 0.5) * 2 * maxDistance;
+            double offsetZ = (random.nextDouble() - 0.5) * 2 * TELEPORT_RADIUS;
 
             Location target = loc.clone().add(offsetX, offsetY, offsetZ);
             target.setY(Math.max(0, Math.min(target.getY(), world.getMaxHeight() - 1)));
