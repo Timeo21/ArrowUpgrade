@@ -14,32 +14,32 @@ Each parts can be made of various materials to provide many effects.
 
 ### Fletching
 - Feather:
-   - Default materials, do nothing
+   - Default materials, does nothing
 - Ender Pearl:
-   - Teleport hit entity to shooter
+   - Teleports hit entity to shooter
 ### Shaft
 - Stick:
-   - Default material, do nothing
+   - Default material, does nothing
 - Blaze Rod:
-   - Ignite the arrow and make the hit entity burn until extinguished
+   - Ignites the arrow and makes the hit entity burn until extinguished
 - Breeze Rod:
-   - Make the arrow fly 50% faster
+   - Makes the arrow fly 50% faster
 ### Point
 - Flint:
-   - Default material, do nothing
+   - Default material, does nothing
 - Ender Pearl:
-   - Teleport the player to the hit block or entity
+   - Teleports the player to the hit block or entity
 - Slime Ball:
-   - Arrow bounce on surfaces 3 times before stopping
+   - Arrow bounces on surfaces 3 times before stopping
 - Chorus Fruit:
-   - Randomly teleport the hit entity within a 10 block radius
+   - Randomly teleports the hit entity within a 10 block radius
 ### Effect
 - None:
    - No effect
 - Glowstone Dust:
-   - Turn the arrow into a spectral arrow that outline the hit entity
+   - Turns the arrow into a spectral arrow that outline the hit entity
 - Potion (any type):
-   - Turn the arrow into a tipped arrow that apply the potion effect on hit entity
+   - Turns the arrow into a tipped arrow that apply the potion effect on hit entity
 ## To-Do List
 - [x] Add Breeze Rod (shaft)
 - [ ] Remove debug messages
